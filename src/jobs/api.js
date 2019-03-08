@@ -8,7 +8,7 @@ export const createJob = (data, user) => {
     headers: {
       Authorization: `Token token=${user.token}`
     },
-    data: data
+    data: { job: data }
   })
 }
 
@@ -49,6 +49,7 @@ export const editJob = (id, data, user) => {
     headers: {
       Authorization: `Token token=${user.token}`
     },
-    data: data
+    data: {
+      job: data }
   })
 }

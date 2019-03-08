@@ -9,8 +9,8 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      email: '',
-      password: ''
+      email: 'a@a.com',
+      password: 'a'
     }
   }
 
@@ -29,7 +29,7 @@ class SignIn extends Component {
         console.log(res.data.user)
       })
       .then(() => alert(messages.signInSuccess, 'success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/jobs'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })
