@@ -9,8 +9,8 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      email: '',
-      password: ''
+      email: 'a@a.com',
+      password: 'a'
     }
   }
 
@@ -24,9 +24,12 @@ class SignIn extends Component {
     const { alert, history, setUser } = this.props
 
     signIn(this.state)
-      .then(res => setUser(res.data.user))
+      .then(res => {
+        setUser(res.data.user)
+        console.log(res.data.user)
+      })
       .then(() => alert(messages.signInSuccess, 'success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/jobs'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '' })

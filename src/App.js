@@ -9,6 +9,12 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
+import CreateJob from './jobs/components/CreateJob'
+import GrabJobs from './jobs/components/GrabJobs'
+import UpdateJob from './jobs/components/UpdateJob'
+import Job from './jobs/components/Job'
+// import DeleteJob from './jobs/components/DeleteJob'
+
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -54,6 +60,22 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/jobs' render={() => (
+            <GrabJobs alert={this.alert} user={user} toggleCreateJobForm={this.toggleCreateJobForm}/>
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/job-create' render={() => (
+            <CreateJob alert={this.alert} user={user} CreateJobFormStatus={this.state.CreateJobFormStatus}
+            />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/jobs/:id/edit' render={({ match }) => (
+            <UpdateJob match={match} alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/jobs/:id' render={({ match }) => (
+            <Job match={match} alert={this.alert} user={user} />
           )} />
         </main>
       </React.Fragment>
